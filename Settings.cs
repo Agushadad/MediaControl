@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
+using System;
 using System.Windows.Forms;
 
 namespace MediaControl
@@ -14,7 +14,7 @@ namespace MediaControl
 			chkStartUp.Checked = (rk.GetValue("MediaControl") != null); ;
 		}
 		private void SetStartup()
-		{			
+		{
 			if (chkStartUp.Checked)
 				rk.SetValue("MediaControl", Application.ExecutablePath);
 			else

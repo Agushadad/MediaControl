@@ -8,25 +8,25 @@ namespace MediaControl
 	internal static class Program
 	{
 		#region Atributes
-		public static bool isPlaying = false;		
+		public static bool isPlaying = false;
 		#endregion
 		/// <summary>
 		/// Punto de entrada principal para la aplicación.
 		/// </summary>
 		[STAThread]
 		static void Main()
-		{			
+		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
 			#region Menu
 			ContextMenu contextMenu = new ContextMenu();
 			MenuItem contextItemSettings = new MenuItem();
-			MenuItem contextItemExit = new MenuItem();			
+			MenuItem contextItemExit = new MenuItem();
 			contextItemSettings.Text = "&Ajustes";
-			contextItemExit.Text = "&Salir";			
+			contextItemExit.Text = "&Salir";
 			contextMenu.MenuItems.Add(contextItemSettings);
-			contextMenu.MenuItems.Add(contextItemExit);			
+			contextMenu.MenuItems.Add(contextItemExit);
 			#endregion
 
 			#region Icons
@@ -45,7 +45,7 @@ namespace MediaControl
 			NotifyIcon previousIcon = new NotifyIcon();
 			previousIcon.Text = "Retroceder";
 			previousIcon.Icon = new Icon(@"../../Images/previous.ico");
-			previousIcon.Visible = true;	
+			previousIcon.Visible = true;
 
 			NotifyIcon muteIcon = new NotifyIcon();
 			muteIcon.Text = "Silenciar";
@@ -55,13 +55,13 @@ namespace MediaControl
 			NotifyIcon volumeUpIcon = new NotifyIcon();
 			volumeUpIcon.Text = "Subir volumen";
 			volumeUpIcon.Icon = new Icon(@"../../Images/volumeUp.ico");
-			volumeUpIcon.Visible = true;	
+			volumeUpIcon.Visible = true;
 
 			NotifyIcon volumeDownIcon = new NotifyIcon();
 			volumeDownIcon.Text = "Bajar volumen";
 			volumeDownIcon.Icon = new Icon(@"../../Images/volumeDown.ico");
 			volumeDownIcon.Visible = true;
-			#endregion			
+			#endregion
 
 			#region	Events	
 			playIcon.MouseClick += new MouseEventHandler(PlayIcon_Click);
@@ -71,20 +71,20 @@ namespace MediaControl
 			volumeUpIcon.MouseClick += new MouseEventHandler(VolumeUpIcon_Click);
 			volumeDownIcon.MouseClick += new MouseEventHandler(VolumeDownIcon_Click);
 			contextItemSettings.Click += new EventHandler(contextMenuSettings_Click);
-			contextItemExit.Click += new EventHandler(contextMenuExit_Click);		
-			#endregion			
+			contextItemExit.Click += new EventHandler(contextMenuExit_Click);
+			#endregion
 			Application.Run();
-		}	
+		}
 		#region Voids
 		private static void VolumeDownIcon_Click(object sender, MouseEventArgs e)
 		{
-			if(e.Button == MouseButtons.Left)
+			if (e.Button == MouseButtons.Left)
 				SendKey(VirtualKeyCodes.VOLUME_DOWN);
 		}
 		private static void VolumeUpIcon_Click(object sender, MouseEventArgs e)
 		{
 			if (e.Button == MouseButtons.Left)
-				SendKey(VirtualKeyCodes.VOLUME_UP);						
+				SendKey(VirtualKeyCodes.VOLUME_UP);
 		}
 		private static void MuteIcon_Click(object sender, MouseEventArgs e)
 		{
@@ -116,9 +116,9 @@ namespace MediaControl
 		}
 		private static void contextMenuSettings_Click(object sender, EventArgs e)
 		{
-			Form settings = new Settings();			
+			Form settings = new Settings();
 			settings.ShowDialog();
-		}	
+		}
 
 		[DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
 		internal static extern void keybd_event(uint bVk, uint bScan, uint dwFlags, uint dwExtraInfo);
@@ -132,7 +132,7 @@ namespace MediaControl
 			FOWARD = 0xB0,
 			PREVIOUS = 0xB1,
 			STOP = 0xB2,
-			PLAY_PAUSE = 0xB3,			
+			PLAY_PAUSE = 0xB3,
 		}
 	}
 }
